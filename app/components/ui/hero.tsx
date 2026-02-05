@@ -53,7 +53,7 @@ export default function Hero() {
         <div className="mt-14">
           <div className="relative aspect-video overflow-hidden rounded-2xl bg-white">
             <div className="flex h-full items-center justify-center text-gray-400 bg-white">
-              <video autoPlay muted loop playsInline className="w-full h-full">
+              <video autoPlay muted loop className="w-full h-full">
                 <source
                   src="/video/Dropbox_Homepage - Copy.mp4"
                   type="video/mp4"
