@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../button";
 import Image from "next/image";
 import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -5,8 +7,17 @@ import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 import { AnimatedItem } from "../animatedItem";
 import logo from "@/public/assets/Nextaflow-allblk.png";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 export default function Footer() {
+
+  const searchParams = useSearchParams();
+  const referral = searchParams.get("referral");
+
+  const signupLink = referral
+    ? `/sign-up?referral=${referral}`
+    : "/sign-up";
+
   return (
     <footer className="bg-[#f7f7f7] border-[1px] border-white/30 pt-6 text-gray-300">
       <div className="md:px-6 px-4 pt-16">
@@ -57,7 +68,7 @@ export default function Footer() {
 
           <div className="flex-col flex md:mt-0 mt-8">
             {/* Signup */}
-            <Link href="/sign-up" className="text-center md:text-right">
+            <Link href={signupLink} className="text-center md:text-right">
               <Button text="Sign Up for Free" className="bg-black text-white" />
             </Link>
             <AnimatedItem index={2} delay={0.15}>

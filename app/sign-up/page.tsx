@@ -11,24 +11,46 @@ import Image from "next/image";
 import Label from "../components/label";
 import Input from "../components/input";
 import InputPassword from "../components/inputPassword";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
+
 
 interface FormData {
   firstName: string;
   lastName: string;
   email: string;
-  // telephone: string;
+  telephone: string;
   password: string;
+  referral: string;
 }
 
 export default function Signup() {
+  const searchParams = useSearchParams();
+  // const referralFromUrl = searchParams.get("referral") || "";
+
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
-    // telephone: "",
     password: "",
+    referral: "",
+    telephone: ""
   });
+
+  useEffect(() => {
+    const referral = searchParams.get("referral");
+    if (referral) {
+      setFormData((prev) => ({ ...prev, referral }));
+    }
+  }, [searchParams]);
+
+
+  const referralFromUrl = searchParams.get("referral");
+  const homeLink = referralFromUrl
+    ? `/?referral=${referralFromUrl}`
+    : "/";
 
   const [passwordError, setPasswordError] = useState("");
 
@@ -68,8 +90,9 @@ export default function Signup() {
         firstname: data.firstName,
         lastname: data.lastName,
         email: data.email.toLowerCase(),
-        // telephone: data.telephone,
+        telephone: data.telephone,
         password: data.password,
+        referral: data.referral,
       };
 
       const res = await axios.post(
@@ -77,39 +100,47 @@ export default function Signup() {
         payload,
         {
           headers: { "Content-Type": "application/json" },
-        },
+        }
       );
-      console.log("API response:", res);
+
+      // 👇 MANUAL STATUS CHECK
+      if (res.data.status === "error") {
+        // throw the entire response so onError can handle it
+        throw res.data;
+      }
+
       return res.data;
     },
 
     onSuccess: (data) => {
-      toast.success(data.message);
+      toast.success(data.message || "Signup successful 🎉");
+
       setFormData({
         firstName: "",
         lastName: "",
         email: "",
-        // telephone: "",
+        telephone: "",
         password: "",
+        referral: "",
       });
     },
+
     onError: (error: any) => {
-      const errorsObj = error?.response?.data?.errors as
-        | Record<string, string[]>
-        | undefined;
+      // 👇 because we threw res.data directly
+      const errorsObj = error?.errors;
 
-      if (errorsObj) {
-        const errorsArray = Object.values(errorsObj).flat();
-
-        errorsArray.forEach((msg) => {
-          toast.error(msg);
-        });
+      if (errorsObj && typeof errorsObj === "object") {
+        Object.values(errorsObj)
+          .flat()
+          .forEach((msg: string) => {
+            toast.error(msg);
+          });
       } else {
-        toast.error(
-          error?.response?.data?.errors || error?.message || "Signup failed",
-        );
+        toast.error(error?.message || "Signup failed");
       }
     },
+
+
   });
 
   const handleSubmit = (e: FormEvent) => {
@@ -123,7 +154,7 @@ export default function Signup() {
   return (
     <section className="bg-black pb-16 px-4 md:px-6">
       {/* Logo */}
-      <Link href="/" className="flex items-center pt-10">
+      <Link href={homeLink} className="flex items-center pt-10">
         <Image
           src={logo}
           alt="Nextaflow logo"
@@ -184,8 +215,20 @@ export default function Signup() {
               />
             </div>
 
+            <div>
+              <Label text="Referral Code" />
+              <Input
+                placeholder="Referral code"
+                type="text"
+                name="referral"
+                value={formData.referral}
+                onChange={handleChange}
+              />
+            </div>
+
+
             {/* Phone Number */}
-            {/* <div>
+            <div>
               <Label text="Phone Number" />
               <Input
                 placeholder="Phone number"
@@ -195,7 +238,7 @@ export default function Signup() {
                 onChange={handleChange}
                 required
               />
-            </div> */}
+            </div>
 
             {/* Password */}
             <div>
@@ -222,8 +265,9 @@ export default function Signup() {
               text="Start My Free Trial + Free Setup"
               className="bg-[var(--secondary)] text-black w-full mt-10"
               isLoading={signupMutation.isPending}
-              disabled={!!passwordError}
+              disabled={!!passwordError || signupMutation.isPending}
             />
+
 
             {/* Social Proof */}
             <p className="text-center text-[#1a1a1a] font-[300] text-sm my-2">
