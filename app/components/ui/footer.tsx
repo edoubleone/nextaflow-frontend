@@ -13,7 +13,7 @@ export default function Footer() {
         {/* Top Section */}
         <div className="grid md:grid-cols-3 grid-cols-1 md:gap-12">
           <AnimatedItem index={0} delay={0.05}>
-            {/* Brand */}
+            {/* logo */}
             <div className="max-w-xl">
               <Image
                 src={logo}
@@ -103,10 +103,40 @@ export default function Footer() {
         </div>
         <AnimatedItem index={4} delay={0.25}>
           {/* Divider */}
-          <div className="border-t border-white/10 pt-24 pb-10 text-center text-[13px] text-[#1a1a1a] font-[200]">
+          <div className="border-t border-white/10 pt-24 text-center text-[13px] text-[#1a1a1a] font-[200]">
             © 2026 NextaFlow. All rights reserved.
           </div>
         </AnimatedItem>
+        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+          {/* Powered by */}
+          <AnimatedItem index={5} delay={0.35}>
+            <p className="text-sm font-[300] text-[#1a1a1a]">
+              Powered by&nbsp;
+              <Link href="/https://edoubleone.net/">
+                <span className="text-[var(--primary)] font-[500]">
+                  Edoubleone.net
+                </span>
+              </Link>
+            </p>
+          </AnimatedItem>
+
+          {/* Links */}
+          <AnimatedItem index={6} delay={0.45}>
+            <div className="flex items-center font-[300] space-x-3 text-sm text-[#1a1a1a]">
+              <a href="/privacy-policy" className="underline text-[13px]">
+                Privacy Policy
+              </a>
+              <span className="text-[#1a1a1a]">|</span>
+              <a href="/terms-of-service" className="underline text-[13px]">
+                Terms of Service
+              </a>
+              <span className="text-[#1a1a1a]">|</span>
+              <a href="/security-policy" className="underline text-[13px]">
+                Security Policy
+              </a>
+            </div>
+          </AnimatedItem>
+        </div>
       </div>
     </footer>
   );

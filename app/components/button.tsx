@@ -38,10 +38,7 @@ export default function Button({
         ${className}
       `}
     >
-      {/* Text */}
       <span>{isLoading ? "Creating account..." : text}</span>
-
-      {/* Right Icon / Loader */}
       {isLoading ? (
         <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
       ) : (

@@ -2,6 +2,7 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useState, ChangeEvent, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import axios from "axios";
 import logo from "@/public/assets/Nextaflow-allwhite.png";
@@ -21,6 +22,7 @@ interface FormData {
 }
 
 export default function Signup() {
+  const router = useRouter();
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -85,6 +87,7 @@ export default function Signup() {
 
     onSuccess: (data) => {
       toast.success(data.message);
+      router.push("/successful");
       setFormData({
         firstName: "",
         lastName: "",
