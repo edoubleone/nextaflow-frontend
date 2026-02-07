@@ -123,11 +123,15 @@ export default function Footer() {
           <AnimatedItem index={5} delay={0.35}>
             <p className="text-sm font-[300] text-[#1a1a1a]">
               Powered by&nbsp;
-              <Link href="/https://edoubleone.net/">
+              <a
+                href="/https://edoubleone.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span className="text-[var(--primary)] font-[500]">
                   Edoubleone.net
                 </span>
-              </Link>
+              </a>
             </p>
           </AnimatedItem>
 
