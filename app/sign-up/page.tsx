@@ -27,7 +27,6 @@ interface FormData {
 export default function Signup() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  
 
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
@@ -93,7 +92,8 @@ export default function Signup() {
         referral: data.referral,
       };
 
-      const res = await axios.post("https://e1xaca.edoubleone.net/api/register",
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/register`,
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -107,7 +107,7 @@ export default function Signup() {
     },
 
     onSuccess: (data) => {
-      toast.success(data.message );
+      toast.success(data.message);
       router.push("/successful");
       setFormData({
         firstName: "",
@@ -146,7 +146,7 @@ export default function Signup() {
   return (
     <section className="bg-black pb-16 px-4 md:px-6">
       {/* Logo */}
-      <div className="md:p-6 px-4 pt-6 ">
+      <div className="md:p-6 px-4">
         <Link href={homeLink} className="flex items-center">
           <Image
             src={logo}
