@@ -5,19 +5,6 @@ import logo from "@/public/assets/Nextaflow-allblk.png";
 export default function SuccessfulModal() {
   return (
     <div className="bg-white min-h-screen">
-      {/* logo */}
-      <Link href="/">
-        <div className="p-6">
-          <Image
-            src={logo}
-            alt="Nextaflow Logo"
-            className="md:h-8 h-5 w-auto"
-            width={200}
-            height={200}
-          />
-        </div>
-      </Link>
-
       <div className="flex items-center justify-center">
         <div className="bg-[#f7f7f7] my-[8rem] w-[455px] rounded-[24px] p-6 relative dm-font leading-[100%] shadow-md">
           <div className="text-center">
