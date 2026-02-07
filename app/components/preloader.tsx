@@ -13,7 +13,6 @@ export default function Preloader() {
           alt="Nextaflow logo"
           width={200}
           height={200}
-          priority
         />
       </div>
 

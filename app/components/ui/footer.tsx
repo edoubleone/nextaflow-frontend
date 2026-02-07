@@ -6,7 +6,6 @@ import { AnimatedItem } from "../animatedItem";
 import logo from "@/public/assets/Nextaflow-allblk.png";
 import Link from "next/link";
 
-
 export default function Footer() {
   return (
     <footer className="bg-[#f7f7f7] border-[1px] border-white/30 pt-6 text-gray-300">
@@ -16,7 +15,13 @@ export default function Footer() {
           <AnimatedItem index={0} delay={0.05}>
             {/* Brand */}
             <div className="max-w-xl">
-              <Image src={logo} alt="Nextaflow Logo" className="md:h-8 h-5 w-auto" />
+              <Image
+                src={logo}
+                alt="Nextaflow Logo"
+                className="md:h-8 h-5 w-auto"
+                width={200}
+                height={200}
+              />
               <p className="mt-4 max-w-sm lg:text-[16px] text-[13px] font-[300] text-[#1a1a1a]">
                 NextaFlow is an all-in-one CRM and automation platform designed
                 to help businesses grow without juggling multiple tools. We
@@ -24,7 +29,7 @@ export default function Footer() {
               </p>
             </div>
           </AnimatedItem>
-          <AnimatedItem index={0} delay={0.1}>
+          <AnimatedItem index={1} delay={0.1}>
             {/* Contact Info */}
             <div className="space-y-2 text-[#1a1a1a] pt-8 md:pt-0">
               <h2>Address</h2>
@@ -55,7 +60,7 @@ export default function Footer() {
             <Link href="/sign-up" className="text-center md:text-right">
               <Button text="Sign Up for Free" className="bg-black text-white" />
             </Link>
-            <AnimatedItem index={0} delay={0.15}>
+            <AnimatedItem index={2} delay={0.15}>
               {/* Social Icons */}
               <div className="flex gap-2 items-center mt-4">
                 <h2 className="text-black lg:text-[16px] text-[13px] font-[300]">
@@ -63,25 +68,40 @@ export default function Footer() {
                 </h2>
                 <div className="flex justify-center gap-4">
                   {/* Twitter */}
-                  <div className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer">
+                  <a
+                    href="https://x.com/edoubleoneinc?t=lrNy6KIiT9EGCUUO2fVenw&s=09"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"
+                  >
                     <FaTwitter size={20} />
-                  </div>
+                  </a>
 
                   {/* Instagram */}
-                  <div className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer">
+                  <a
+                    href="https://www.instagram.com/edoubleoneinc?igsh=MWFhanV0YWh6eXM2aQ=="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"
+                  >
                     <FaInstagram size={20} />
-                  </div>
+                  </a>
 
                   {/* LinkedIn */}
-                  <div className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer">
+                  <a
+                    href="https://www.linkedin.com/company/e-double-one-inc/posts/?feedView=all"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"
+                  >
                     <FaLinkedin size={20} />
-                  </div>
+                  </a>
                 </div>
               </div>
             </AnimatedItem>
           </div>
         </div>
-        <AnimatedItem index={0} delay={0.25}>
+        <AnimatedItem index={4} delay={0.25}>
           {/* Divider */}
           <div className="border-t border-white/10 pt-24 pb-10 text-center text-[13px] text-[#1a1a1a] font-[200]">
             © 2026 NextaFlow. All rights reserved.

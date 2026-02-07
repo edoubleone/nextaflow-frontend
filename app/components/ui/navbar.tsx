@@ -20,6 +20,8 @@ export default function Navbar() {
           src={logo}
           alt="Nextaflow logo"
           className="md:h-8 h-5 w-auto"
+          width={200}
+          height={200}
           priority
         />
       </Link>

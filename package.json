@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@tanstack/react-query": "^5.90.20",
+    "@types/react-toastify": "^4.0.2",
+    "axios": "^1.13.4",
     "daisy": "^0.2.0",
     "lucide-react": "^0.563.0",
     "motion": "^12.31.0",
@@ -17,6 +20,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0",
+    "react-toastify": "^11.0.5",
     "swiper": "^12.1.0",
     "ui": "^0.2.4"
   },

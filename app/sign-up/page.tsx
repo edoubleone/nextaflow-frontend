@@ -1,34 +1,123 @@
 "use client";
-import logo from "@/public/assets/Nextaflow-allwhite.png"
+
+import { useMutation } from "@tanstack/react-query";
 import { useState, ChangeEvent, FormEvent } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import logo from "@/public/assets/Nextaflow-allwhite.png";
 import Button from "../components/button";
 import Link from "next/link";
 import Image from "next/image";
+import Label from "../components/label";
+import Input from "../components/input";
+import InputPassword from "../components/inputPassword";
 
 interface FormData {
-  fullName: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  // telephone: string;
   password: string;
 }
 
 export default function Signup() {
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
+    // telephone: "",
     password: "",
   });
 
-  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [passwordError, setPasswordError] = useState("");
 
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+
+  // Generic input handler
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "email" ? value.toLowerCase() : value,
+    }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  // Password-specific validation
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    setFormData((prev) => ({
+      ...prev,
+      password: value,
+    }));
+
+    if (!passwordRegex.test(value)) {
+      setPasswordError(
+        "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.",
+      );
+    } else {
+      setPasswordError("");
+    }
+  };
+  const signupMutation = useMutation({
+    mutationFn: async (data: FormData) => {
+      const payload = {
+        firstname: data.firstName,
+        lastname: data.lastName,
+        email: data.email.toLowerCase(),
+        // telephone: data.telephone,
+        password: data.password,
+      };
+
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/register`,
+        payload,
+        {
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+      console.log("API response:", res);
+      return res.data;
+    },
+
+    onSuccess: (data) => {
+      toast.success(data.message);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        // telephone: "",
+        password: "",
+      });
+    },
+    onError: (error: any) => {
+      const errorsObj = error?.response?.data?.errors as
+        | Record<string, string[]>
+        | undefined;
+
+      if (errorsObj) {
+        const errorsArray = Object.values(errorsObj).flat();
+
+        errorsArray.forEach((msg) => {
+          toast.error(msg);
+        });
+      } else {
+        toast.error(
+          error?.response?.data?.errors || error?.message || "Signup failed",
+        );
+      }
+    },
+  });
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // Replace this with your API call
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
+
+    if (passwordError) return;
+
+    signupMutation.mutate(formData);
   };
 
   return (
@@ -39,103 +128,115 @@ export default function Signup() {
           src={logo}
           alt="Nextaflow logo"
           className="md:h-8 h-5 w-auto"
-          priority
+          width={200}
+          height={200}
         />
       </Link>
+
       <div className="max-w-lg mx-auto bg-white mt-10 rounded-3xl overflow-hidden">
         <div className="md:px-8 px-4 py-10">
           <h2 className="md:text-3xl text-xl font-[600] text-gray-900 mb-2 text-center">
             Start Your 30-Days Free Trial
           </h2>
+
           <p className="text-center md:text-[16px] text-[13px] text-[#1a1a1a] font-[300] mb-8">
             We'll set up your NextaFlow account for you no coding required.
           </p>
 
-          {submitted ? (
-            <div className="text-center py-10">
-              <h3 className="text-xl font-[400] text-[#1a1a1a]">
-                Thank you for signing up!
-              </h3>
-              <p className="text-[#1a1a1a] mt-2">
-                Our team will contact you shortly to complete your free setup.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Full Name */}
+          <form className="space-y-4" onSubmit={handleSubmit}>
+            {/* Names */}
+            <div className="flex items-center gap-4">
               <div>
-                <label
-                  htmlFor="fullName"
-                  className="block text-sm font-[300] text-[#1a1a1a]"
-                >
-                  Full Name
-                </label>
-                <input
+                <Label text="First name" />
+                <Input
+                  placeholder="First name"
                   type="text"
-                  name="fullName"
-                  id="fullName"
-                  required
-                  value={formData.fullName}
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
-                  placeholder="John Doe"
-                  className="mt-1 block w-full px-4 py-3 border outline-none border-gray-200 rounded-md font-[300] focus:ring-black focus:border-black sm:text-sm"
+                  required
                 />
               </div>
 
-              {/* Email */}
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-[300] text-[#1a1a1a]"
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required
-                  value={formData.email}
+                <Label text="Last name" />
+                <Input
+                  placeholder="Last name"
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
                   onChange={handleChange}
-                  placeholder="you@example.com"
-                  className="mt-1 block w-full px-4 py-3 border outline-none border-gray-200 rounded-md font-[300] focus:ring-black focus:border-black sm:text-sm"
+                  required
                 />
               </div>
+            </div>
 
-              {/* Password */}
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-[300] text-[#1a1a1a]"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  required
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="********"
-                  className="mt-1 block w-full px-4 py-3 border border-gray-200 outline-none rounded-md font-[300] focus:ring-black focus:border-black sm:text-sm"
-                />
-              </div>
-
-              {/* Submit Button */}
-
-              <Button
-                text="Start My Free Trial + Free Setup"
-                className="bg-[var(--secondary)] text-black w-full"
+            {/* Email */}
+            <div>
+              <Label text="Email" />
+              <Input
+                placeholder="Email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
+            </div>
 
-              {/* Social Proof */}
-              <p className="text-center text-[#1a1a1a] font-[300] text-sm my-2">
-                Join business owners who 5X their business by trading app
-                fatigue for growth.
+            {/* Phone Number */}
+            {/* <div>
+              <Label text="Phone Number" />
+              <Input
+                placeholder="Phone number"
+                type="tel"
+                name="telephone"
+                value={formData.telephone}
+                onChange={handleChange}
+                required
+              />
+            </div> */}
+
+            {/* Password */}
+            <div>
+              <Label text="Password" />
+              <InputPassword
+                placeholder="Password"
+                name="password"
+                id="password"
+                value={formData.password}
+                onChange={handlePasswordChange}
+                showVisibility={passwordVisible}
+                togglePasswordVisibility={() =>
+                  setPasswordVisible(!passwordVisible)
+                }
+              />
+              {passwordError && (
+                <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+              )}
+            </div>
+
+            {/* Submit */}
+            <Button
+              type="submit"
+              text="Start My Free Trial + Free Setup"
+              className="bg-[var(--secondary)] text-black w-full mt-10"
+              isLoading={signupMutation.isPending}
+              disabled={!!passwordError}
+            />
+
+            {/* Social Proof */}
+            <p className="text-center text-[#1a1a1a] font-[300] text-sm my-2">
+              Join business owners who 5X their business by trading app fatigue
+              for growth.
+            </p>
+
+            {signupMutation.isError && (
+              <p className="text-red-500 text-sm text-center">
+                {(signupMutation.error as Error).message}
               </p>
-            </form>
-          )}
+            )}
+          </form>
         </div>
       </div>
     </section>
