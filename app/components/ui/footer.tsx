@@ -124,7 +124,7 @@ export default function Footer() {
             <p className="text-sm font-[300] text-[#1a1a1a]">
               Powered by&nbsp;
               <a
-                href="/https://edoubleone.net/"
+                href="https://edoubleone.net/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
