@@ -93,8 +93,7 @@ export default function Signup() {
         referral: data.referral,
       };
 
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/register`,
+      const res = await axios.post("https://e1xaca.edoubleone.net/api/register",
         payload,
         {
           headers: { "Content-Type": "application/json" },
