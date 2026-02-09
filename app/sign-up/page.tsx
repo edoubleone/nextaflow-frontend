@@ -1,19 +1,18 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import axios from "axios";
 import logo from "@/public/assets/Nextaflow-allwhite.png";
 import Button from "../components/button";
 import Link from "next/link";
 import Image from "next/image";
 import Label from "../components/label";
 import Input from "../components/input";
-import InputPassword from "../components/inputPassword";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import { ghlClient } from "@/lib/ghl";
 
 interface FormData {
@@ -21,7 +20,6 @@ interface FormData {
   lastName: string;
   email: string;
   telephone: string;
-  password: string;
   referral: string;
 }
 
@@ -29,16 +27,15 @@ export default function Signup() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
     email: "",
     telephone: "",
-    password: "",
     referral: "",
   });
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     const referral = searchParams.get("referral");
@@ -50,38 +47,16 @@ export default function Signup() {
   const referralFromUrl = searchParams.get("referral");
   const homeLink = referralFromUrl ? `/?referral=${referralFromUrl}` : "/";
 
-  const [passwordError, setPasswordError] = useState("");
-
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
-
-  // Generic input handler
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({
       ...prev,
       [name]: name === "email" ? value.toLowerCase() : value,
     }));
+    // Remove error on change
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  // Password-specific validation
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-
-    setFormData((prev) => ({
-      ...prev,
-      password: value,
-    }));
-
-    if (!passwordRegex.test(value)) {
-      setPasswordError(
-        "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.",
-      );
-    } else {
-      setPasswordError("");
-    }
-  };
   const signupMutation = useMutation({
     mutationFn: async (data: FormData) => {
       const ghlPayload: any = {
@@ -90,25 +65,17 @@ export default function Signup() {
         email: data.email.toLowerCase(),
         phone: data.telephone,
         locationId: process.env.NEXT_PUBLIC_GHL_LOCATION_ID,
+        tags: data.referral?.trim()
+          ? ["signup", `ref-${data.referral}`]
+          : ["signup"],
       };
-
-      // add tags only if referral exists
-      if (data.referral?.trim()) {
-        ghlPayload.tags = ["signup", `ref-${data.referral}`];
-      } else {
-        ghlPayload.tags = ["signup"];
-      }
-
       const res = await ghlClient.post("/contacts/", ghlPayload);
-
       return res.data;
     },
-
     onSuccess: () => {
       toast.success("Signup successful");
       router.push("/successful");
     },
-
     onError: (error: any) => {
       toast.error(
         error?.response?.data?.message || "Failed to send data to GHL",
@@ -119,14 +86,21 @@ export default function Signup() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (passwordError) return;
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.firstName) newErrors.firstName = "First name is required";
+    if (!formData.lastName) newErrors.lastName = "Last name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.telephone) newErrors.telephone = "Phone number is required";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
 
     signupMutation.mutate(formData);
   };
 
   return (
     <section className="bg-black pb-16 px-4 md:px-6">
-      {/* Logo */}
       <div className="md:p-6 px-4">
         <Link href={homeLink} className="flex items-center">
           <Image
@@ -161,8 +135,12 @@ export default function Signup() {
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required
                 />
+                {errors.firstName && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.firstName}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -173,8 +151,10 @@ export default function Signup() {
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
-                  required
                 />
+                {errors.lastName && (
+                  <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+                )}
               </div>
             </div>
 
@@ -187,10 +167,13 @@ export default function Signup() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
               />
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+              )}
             </div>
 
+            {/* Referral */}
             <div>
               <Label text="Referral Code" />
               <Input
@@ -205,45 +188,37 @@ export default function Signup() {
             {/* Phone Number */}
             <div>
               <Label text="Phone Number" />
-              <Input
-                placeholder="Phone number"
-                type="tel"
-                name="telephone"
+              <PhoneInput
+                country="ng"
                 value={formData.telephone}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            {/* Password */}
-            <div>
-              <Label text="Password" />
-              <InputPassword
-                placeholder="Password"
-                name="password"
-                id="password"
-                value={formData.password}
-                onChange={handlePasswordChange}
-                showVisibility={passwordVisible}
-                togglePasswordVisibility={() =>
-                  setPasswordVisible(!passwordVisible)
+                onChange={(phone) =>
+                  setFormData((prev) => ({ ...prev, telephone: phone }))
                 }
+                containerStyle={{ height: "40px", borderRadius: "5px" }}
+                inputStyle={{
+                  height: "40px",
+                  width: "100%",
+                  borderRadius: "5px",
+                  borderColor: "#e5e7eb",
+                  marginTop: "5px",
+                  color: "#1a1a1a",
+                }}
+                onFocus={(e: any) => (e.target.style.borderColor = "#000000")}
+                onBlur={(e: any) => (e.target.style.borderColor = "#000000")}
               />
-              {passwordError && (
-                <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+              {errors.telephone && (
+                <p className="text-red-500 text-xs mt-1">{errors.telephone}</p>
               )}
             </div>
 
-            {/* Submit */}
             <Button
               type="submit"
               text="Start My Free Trial + Free Setup"
               className="bg-[var(--secondary)] text-black w-full mt-10"
               isLoading={signupMutation.isPending}
-              disabled={!!passwordError || signupMutation.isPending}
+              disabled={signupMutation.isPending}
             />
 
-            {/* Social Proof */}
             <p className="text-center text-[#1a1a1a] font-[300] text-sm my-2">
               Join business owners who 5X their business by trading app fatigue
               for growth.

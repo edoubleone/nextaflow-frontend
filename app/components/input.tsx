@@ -30,7 +30,7 @@ export default function Input({
       required={required}
       onChange={onChange}
       placeholder={placeholder}
-      className={`w-full px-4 py-3 mt-[5px] border outline-none border-gray-200 rounded-md font-[300] focus:ring-black focus:border-black sm:text-sm text-[#1a1a1a] ${className}`}
+      className={`w-full px-4 h-[40px] mt-[5px] border outline-none border-gray-200 rounded-[5px] font-[300] focus:ring-black focus:border-black sm:text-sm text-[#1a1a1a] ${className}`}
     />
   );
 }
