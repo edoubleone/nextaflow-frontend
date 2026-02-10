@@ -198,13 +198,14 @@ export default function Signup() {
                   height: "40px",
                   borderRadius: "5px",
                   color: "#1a1a1a",
+                  width: "100%",
+                  marginTop: "5px",
                 }}
                 inputStyle={{
                   height: "40px",
                   width: "100%",
                   borderRadius: "5px",
                   borderColor: "#e5e7eb",
-                  marginTop: "5px",
                   color: "#1a1a1a",
                 }}
                 onFocus={(e: any) => (e.target.style.borderColor = "#000000")}
