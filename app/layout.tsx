@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import QueryProvider from "./queryProvider";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,10 +7,10 @@ import "./globals.css";
 import Preloader from "./components/preloader";
 
 
-const poppins = Poppins({
-  variable: "--poppins",
+const inter = Inter({
+  variable: "--inter ",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "500", "600", "700", "800", "900"],
+  weight: ["200", "300", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} antialiased`}>
+      <script 
+        src="https://widgets.leadconnectorhq.com/loader.js"  
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
+        data-widget-id="699861eb6e60097dd7229cfd"   > 
+        </script>
+      <body className={`${inter.variable} antialiased`}>
         <Preloader duration={2000}>
           <QueryProvider>
             {children}
