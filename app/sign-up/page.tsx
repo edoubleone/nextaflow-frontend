@@ -100,7 +100,7 @@ export default function Signup() {
   };
 
   return (
-    <section className="bg-black pb-16 px-4 h-screen md:px-6">
+    <section className="bg-black pb-16 px-4 h-full md:px-6">
       <div className="md:p-6 px-4 pt-6">
         <Link href={homeLink} className="flex items-center">
           <Image
