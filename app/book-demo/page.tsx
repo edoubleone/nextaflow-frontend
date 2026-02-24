@@ -12,7 +12,7 @@ export default function BookDemo() {
   return (
     <section className="min-h-screen flex items-center justify-center bg-black px-6">
       <Navbar showCTA={false} />
-      <div className="text-center max-w-2xl pt-10">
+      <div className="text-center md:max-w-2xl md:pt-10">
         <h1 className="text-4xl md:text-6xl text-(--tertiary) font-[500] mb-6">
           Transform Your Business With Our Platform{" "}
         </h1>
