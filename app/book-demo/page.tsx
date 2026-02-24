@@ -6,9 +6,7 @@ import Link from "next/link";
 
 export default function BookDemo() {
   const router = useRouter();
-  const handleRedirect = () => {
-    router.push("/book-demo");
-  };
+ 
   return (
     <section className="min-h-screen flex items-center justify-center bg-black px-6">
       <Navbar showCTA={false} />
@@ -22,7 +20,6 @@ export default function BookDemo() {
         </p>
         <Link href="https://link.nextaflow.net/widget/booking/XchFTkMnL0ZY5QnwUtWN">
           <Button
-            onClick={handleRedirect}
             text="Book a Demo"
             className="bg-(--secondary) text-black mx-auto"
           />
