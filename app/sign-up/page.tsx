@@ -74,7 +74,7 @@ export default function Signup() {
     },
     onSuccess: () => {
       toast.success("Signup successful");
-      router.push("/successful");
+      router.push("/book-demo");
     },
     onError: (error: any) => {
       toast.error(

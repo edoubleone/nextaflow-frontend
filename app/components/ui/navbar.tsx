@@ -6,17 +6,17 @@ import Image from "next/image";
 import logo from "@/public/assets/Nextaflow.png";
 import { useSearchParams } from "next/navigation";
 
-export default function Navbar() {
+interface NavbarProps {
+  showCTA?: boolean;
+}
+
+export default function Navbar({ showCTA = true }: NavbarProps) {
   const searchParams = useSearchParams();
   const referral = searchParams.get("referral");
 
-  const signupLink = referral
-    ? `/sign-up?referral=${referral}`
-    : "/sign-up";
+  const signupLink = referral ? `/sign-up?referral=${referral}` : "/sign-up";
 
-  const homeLink = referral
-    ? `/?referral=${referral}`
-    : "/";
+  const homeLink = referral ? `/?referral=${referral}` : "/";
 
   return (
     <nav
@@ -29,7 +29,7 @@ export default function Navbar() {
       "
     >
       {/* Logo */}
-      <Link href="/" className="flex items-center">
+      <Link href={homeLink} className="flex items-center">
         <Image
           src={logo}
           alt="Nextaflow logo"
@@ -40,13 +40,15 @@ export default function Navbar() {
         />
       </Link>
 
-      {/* CTA Button */}
-      <Link href={signupLink} className="hidden md:flex items-center">
-        <Button
-          text="Start My Free 30-Days Trial"
-          className="bg-[var(--secondary)] text-black"
-        />
-      </Link>
+      {/* CTA Button (optional) */}
+      {showCTA && (
+        <Link href={signupLink} className="hidden md:flex items-center">
+          <Button
+            text="Start My Free 30-Days Trial"
+            className="bg-[var(--secondary)] text-black"
+          />
+        </Link>
+      )}
     </nav>
   );
 }

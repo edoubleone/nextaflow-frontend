@@ -6,6 +6,7 @@ interface ButtonProps {
   className?: string;
   isLoading?: boolean;
   disabled?: boolean;
+  onClick?: () => void; 
 }
 
 export default function Button({
@@ -14,6 +15,7 @@ export default function Button({
   type = "button",
   isLoading = false,
   disabled = false,
+  onClick, 
 }: ButtonProps) {
   const isDisabled = disabled || isLoading;
 
@@ -21,6 +23,7 @@ export default function Button({
     <button
       type={type}
       disabled={isDisabled}
+      onClick={onClick} 
       className={`
         group
         rounded-[10px]
@@ -39,6 +42,7 @@ export default function Button({
       `}
     >
       <span>{isLoading ? "Creating account..." : text}</span>
+
       {isLoading ? (
         <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
       ) : (
