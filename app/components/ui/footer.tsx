@@ -90,7 +90,7 @@ export default function Footer() {
 
                   {/* Instagram */}
                   <a
-                    href="https://www.instagram.com/edoubleoneinc?igsh=MWFhanV0YWh6eXM2aQ=="
+                    href="https://www.instagram.com/edoubleone_nextaflow?igsh=MXRlZGoyMHp1ZW0yMQ%3D%3D&utm_source=qr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"

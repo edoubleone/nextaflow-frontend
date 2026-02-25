@@ -5,7 +5,6 @@ import Navbar from "../components/ui/navbar";
 import Link from "next/link";
 
 export default function BookDemo() {
-  const router = useRouter();
  
   return (
     <section className="min-h-screen flex items-center justify-center bg-black px-6">
