@@ -10,7 +10,7 @@ type Step = {
 const steps: Step[] = [
   {
     title: "Sign Up",
-    description: "Claim your 30-day free trial and get instant access.",
+    description: "Book a demo for a 30days free trial and get instant access.",
     icon: <UserPlus className="w-6 h-6 text-black" />,
   },
   {

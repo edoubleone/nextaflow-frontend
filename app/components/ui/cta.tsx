@@ -37,7 +37,7 @@ export default function CTA() {
           <Link href={signupLink}>
             <div className="mx-auto flex justify-center">
               <Button
-                text="Claim My 30-Days Free Trial"
+                text="Book a demo for free trial"
                 className="bg-[var(--secondary)] text-black"
               />
             </div>
