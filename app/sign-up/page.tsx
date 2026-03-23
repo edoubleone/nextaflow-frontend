@@ -117,7 +117,7 @@ export default function Signup() {
       <div className="max-w-lg mx-auto bg-white mt-10 rounded-3xl overflow-hidden">
         <div className="md:px-8 px-4 py-10">
           <h2 className="md:text-3xl text-xl font-[600] text-gray-900 mb-2 text-center">
-            Start Your 30-Days Free Trial
+            Start Your 14-Days Free Trial
           </h2>
 
           <p className="text-center md:text-[16px] text-[13px] text-[#1a1a1a] font-[300] mb-8">

@@ -44,7 +44,7 @@ export default function Navbar({ showCTA = true }: NavbarProps) {
       {showCTA && (
         <Link href={signupLink} className="hidden md:flex items-center">
           <Button
-            text="Start My Free 30-Days Trial"
+            text="Start My Free 14-Days Trial"
             className="bg-[var(--secondary)] text-black"
           />
         </Link>

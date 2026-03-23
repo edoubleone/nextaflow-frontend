@@ -10,7 +10,7 @@ const faqs: FAQItem[] = [
   {
     question: "Is it really free?",
     answer:
-      'Yes. You get 30 days of full access and our "done-for-you" setup service at no cost.',
+      'Yes. You get 14 days of full access and our "done-for-you" setup service at no cost.',
   },
   {
     question: "Do I need a credit card?",

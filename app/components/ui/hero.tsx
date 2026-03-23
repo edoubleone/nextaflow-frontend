@@ -20,7 +20,7 @@ export default function Hero() {
         {/* Headline */}
         <AnimatedItem index={0} delay={0.05}>
           <h1 className="mx-auto max-w-3xl md:text-4xl text-2xl font-[400] leading-tighter text-[var(--tertiary)] md:text-5xl md:pt-20 pt-16">
-            30 Days Free Trial for
+            14 Days Free Trial for
             <span className="text-[var(--primary)]">&nbsp;NextaFlow</span>&nbsp;
             with Setup Done for You for Free—Yes, for Free!
           </h1>
@@ -40,7 +40,7 @@ export default function Hero() {
           <AnimatedItem index={0} delay={0.15}>
             <Link href={signupLink}>
               <Button
-                text="Start My Free 30-Days Trial"
+                text="Start My Free 14-Days Trial"
                 className="bg-[var(--secondary)] text-black"
               />
             </Link>
