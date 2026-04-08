@@ -11,9 +11,11 @@ import Image from "next/image";
 import Label from "../components/label";
 import Input from "../components/input";
 import PhoneInput from "react-phone-input-2";
+// @ts-ignore
 import "react-phone-input-2/lib/style.css";
 import { useSearchParams } from "next/navigation";
 import { ghlClient } from "@/lib/ghl";
+import CustomSelect from "../components/customSelect";
 
 interface FormData {
   firstName: string;
@@ -21,9 +23,17 @@ interface FormData {
   email: string;
   telephone: string;
   referral: string;
+  service: string;
 }
 
 export default function Signup() {
+  const serviceOptions = [
+    { value: "Bright", label: "Bright" },
+    { value: "Rebecca", label: "Rebecca" },
+    { value: "Social media", label: "Social media" },
+    { value: "Others", label: "Others" },
+  ];
+
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -32,7 +42,8 @@ export default function Signup() {
     lastName: "",
     email: "",
     telephone: "",
-    referral: "",
+    referral: "", // Still kept in state to capture URL params
+    service: "",
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -53,7 +64,6 @@ export default function Signup() {
       ...prev,
       [name]: name === "email" ? value.toLowerCase() : value,
     }));
-    // Remove error on change
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
@@ -66,8 +76,9 @@ export default function Signup() {
         phone: data.telephone,
         locationId: process.env.NEXT_PUBLIC_GHL_LOCATION_ID,
         tags: data.referral?.trim()
-          ? ["signup", `ref-${data.referral}`]
-          : ["signup"],
+          ? ["signup", `ref-${data.referral}`, `service-${data.service}`]
+          : ["signup", `service-${data.service}`],
+        customFields: [],
       };
       const res = await ghlClient.post("/contacts/", ghlPayload);
       return res.data;
@@ -91,6 +102,7 @@ export default function Signup() {
     if (!formData.lastName) newErrors.lastName = "Last name is required";
     if (!formData.email) newErrors.email = "Email is required";
     if (!formData.telephone) newErrors.telephone = "Phone number is required";
+    if (!formData.service) newErrors.service = "Please select a service";
 
     setErrors(newErrors);
 
@@ -100,7 +112,7 @@ export default function Signup() {
   };
 
   return (
-    <section className="bg-black pb-16 px-4 min-h-screen  md:px-6">
+    <section className="bg-black pb-16 px-4 min-h-screen md:px-6">
       <div className="md:p-6 px-4 pt-6">
         <Link href={homeLink} className="flex items-center">
           <Image
@@ -121,13 +133,12 @@ export default function Signup() {
           </h2>
 
           <p className="text-center md:text-[16px] text-[13px] text-[#1a1a1a] font-[300] mb-8">
-            We'll set up your NextaFlow account for you no coding required.
+            We&apos;ll set up your NextaFlow account for you no coding required.
           </p>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
-            {/* Names */}
             <div className="flex items-center gap-4">
-              <div>
+              <div className="flex-1">
                 <Label text="First name" />
                 <Input
                   placeholder="First name"
@@ -143,7 +154,7 @@ export default function Signup() {
                 )}
               </div>
 
-              <div>
+              <div className="flex-1">
                 <Label text="Last name" />
                 <Input
                   placeholder="Last name"
@@ -158,7 +169,6 @@ export default function Signup() {
               </div>
             </div>
 
-            {/* Email */}
             <div>
               <Label text="Email" />
               <Input
@@ -173,19 +183,26 @@ export default function Signup() {
               )}
             </div>
 
-            {/* Referral */}
+            {/* Select Service Section */}
             <div>
-              <Label text="Referral Code" />
-              <Input
-                placeholder="Referral code"
-                type="text"
-                name="referral"
-                value={formData.referral}
-                onChange={handleChange}
+              <Label text="Referral" />
+              <CustomSelect
+                label="Referral"
+                value={formData.service}
+                options={serviceOptions}
+                onChange={(val) => {
+                  setFormData((prev) => ({ ...prev, service: val }));
+                  setErrors((prev) => ({ ...prev, service: "" }));
+                }}
+                required={true}
               />
+              {errors.service && (
+                <p className="text-red-500 text-xs -mt-3 mb-3">
+                  {errors.service}
+                </p>
+              )}
             </div>
 
-            {/* Phone Number */}
             <div>
               <Label text="Phone Number" />
               <PhoneInput
@@ -208,8 +225,6 @@ export default function Signup() {
                   borderColor: "#e5e7eb",
                   color: "#1a1a1a",
                 }}
-                onFocus={(e: any) => (e.target.style.borderColor = "#000000")}
-                onBlur={(e: any) => (e.target.style.borderColor = "#000000")}
               />
               {errors.telephone && (
                 <p className="text-red-500 text-xs mt-1">{errors.telephone}</p>

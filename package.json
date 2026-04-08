@@ -9,7 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@gsap/react": "^2.1.2",
+    "@mui/material": "^9.0.0",
+    "@mui/styled-engine-sc": "^9.0.0",
     "@tanstack/react-query": "^5.90.20",
     "@types/react-toastify": "^4.0.2",
     "axios": "^1.13.4",
@@ -22,6 +26,7 @@
     "react-icons": "^5.5.0",
     "react-phone-input-2": "^2.15.1",
     "react-toastify": "^11.0.5",
+    "styled-components": "^6.3.12",
     "swiper": "^12.1.0",
     "ui": "^0.2.4"
   },
