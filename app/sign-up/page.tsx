@@ -1,6 +1,11 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
+// @ts-ignore
+import "react-phone-input-2/lib/style.css";
+import { useSearchParams } from "next/navigation";
+import { ghlClient } from "@/lib/ghl";
+import CustomSelect from "../components/customSelect";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -11,11 +16,8 @@ import Image from "next/image";
 import Label from "../components/label";
 import Input from "../components/input";
 import PhoneInput from "react-phone-input-2";
-// @ts-ignore
-import "react-phone-input-2/lib/style.css";
-import { useSearchParams } from "next/navigation";
-import { ghlClient } from "@/lib/ghl";
-import CustomSelect from "../components/customSelect";
+
+
 
 interface FormData {
   firstName: string;
@@ -42,7 +44,7 @@ export default function Signup() {
     lastName: "",
     email: "",
     telephone: "",
-    referral: "", // Still kept in state to capture URL params
+    referral: "", 
     service: "",
   });
 
