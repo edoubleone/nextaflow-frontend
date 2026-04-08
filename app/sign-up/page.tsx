@@ -1,6 +1,7 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
+// @ts-ignore
 import "react-phone-input-2/lib/style.css";
 import { useSearchParams } from "next/navigation";
 import { ghlClient } from "@/lib/ghl";
@@ -15,7 +16,7 @@ import Image from "next/image";
 import Label from "../components/label";
 import Input from "../components/input";
 import PhoneInput from "react-phone-input-2";
-// @ts-ignore
+
 
 
 interface FormData {
