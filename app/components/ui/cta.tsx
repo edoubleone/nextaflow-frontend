@@ -1,18 +1,10 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import Button from "../button";
 import { AnimatedItem } from "../animatedItem";
-import { useSearchParams } from "next/navigation";
 
 export default function CTA() {
-  const searchParams = useSearchParams();
-  const referral = searchParams.get("referral");
-
-  const signupLink = referral
-    ? `/sign-up?referral=${referral}`
-    : "/sign-up";
 
   return (
     <section className="relative overflow-hidden bg-black py-20">
@@ -34,7 +26,7 @@ export default function CTA() {
 
         <AnimatedItem index={0} delay={0.15}>
           {/* CTA Button */}
-          <Link href={signupLink}>
+          <Link href="https://link.nextaflow.net/widget/booking/XchFTkMnL0ZY5QnwUtWN">
             <div className="mx-auto flex justify-center">
               <Button
                 text="Book a demo for free trial"

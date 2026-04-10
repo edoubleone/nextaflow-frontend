@@ -1,23 +1,13 @@
 "use client";
-
 import Button from "../button";
 import Image from "next/image";
-import { FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 import { AnimatedItem } from "../animatedItem";
 import logo from "@/public/assets/Nextaflow-allblk.png";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
 export default function Footer() {
-
-  const searchParams = useSearchParams();
-  const referral = searchParams.get("referral");
-
-  const signupLink = referral
-    ? `/sign-up?referral=${referral}`
-    : "/sign-up";
-
   return (
     <footer className="bg-[#f7f7f7] border-[1px] border-white/30 pt-6 text-gray-300 h-full">
       <div className="md:px-6 px-4 pt-16">
@@ -68,8 +58,11 @@ export default function Footer() {
 
           <div className="flex-col flex md:mt-0 mt-8">
             {/* Signup */}
-            <Link href={signupLink} className="text-center md:text-right">
-              <Button text="Sign Up for Free" className="bg-black text-white" />
+            <Link
+              href="https://link.nextaflow.net/widget/booking/XchFTkMnL0ZY5QnwUtWN"
+              className="text-center md:text-right"
+            >
+              <Button text="Book for Free" className="bg-black text-white" />
             </Link>
             <AnimatedItem index={2} delay={0.15}>
               {/* Social Icons */}
@@ -79,14 +72,14 @@ export default function Footer() {
                 </h2>
                 <div className="flex justify-center gap-4">
                   {/* Twitter */}
-                  <a
+                  {/* <a
                     href="https://x.com/edoubleoneinc?t=lrNy6KIiT9EGCUUO2fVenw&s=09"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"
                   >
                     <FaTwitter size={20} />
-                  </a>
+                  </a> */}
 
                   {/* Instagram */}
                   <a
@@ -124,7 +117,7 @@ export default function Footer() {
             <p className="text-sm font-[300] text-[#1a1a1a]">
               Powered by&nbsp;
               <a
-                href="https://nextaflow.net/"
+                href="http://edoubleone.net/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
