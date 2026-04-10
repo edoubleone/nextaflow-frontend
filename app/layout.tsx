@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import QueryProvider from "./queryProvider";
+// @ts-ignore
 import "react-toastify/dist/ReactToastify.css";
+// @ts-ignore
 import "./globals.css";
 import Preloader from "./components/preloader";
-
+import Script from "next/script";
 
 const inter = Inter({
   variable: "--inter ",
@@ -26,11 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <script 
-        src="https://widgets.leadconnectorhq.com/loader.js"  
-        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" 
-        data-widget-id="699861eb6e60097dd7229cfd"   > 
-        </script>
+      <Script
+        src="https://widgets.leadconnectorhq.com/loader.js"
+        data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+        data-widget-id="699861eb6e60097dd7229cfd"
+      />
+
       <body className={`${inter.variable} antialiased`}>
         <Preloader duration={2000}>
           <QueryProvider>

@@ -11,12 +11,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ showCTA = true }: NavbarProps) {
-  const searchParams = useSearchParams();
-  const referral = searchParams.get("referral");
-
-  const signupLink = referral ? `/sign-up?referral=${referral}` : "/sign-up";
-
-  const homeLink = referral ? `/?referral=${referral}` : "/";
+  
 
   return (
     <nav
@@ -29,7 +24,7 @@ export default function Navbar({ showCTA = true }: NavbarProps) {
       "
     >
       {/* Logo */}
-      <Link href={homeLink} className="flex items-center">
+      <Link href="/" className="flex items-center">
         <Image
           src={logo}
           alt="Nextaflow logo"
@@ -40,9 +35,12 @@ export default function Navbar({ showCTA = true }: NavbarProps) {
         />
       </Link>
 
-      {/* CTA Button (optional) */}
+      {/* CTA Button */}
       {showCTA && (
-        <Link href={signupLink} className="hidden md:flex items-center">
+        <Link
+          href="https://link.nextaflow.net/widget/booking/XchFTkMnL0ZY5QnwUtWN"
+          className="hidden md:flex items-center"
+        >
           <Button
             text="Start My Free 14-Days Trial"
             className="bg-[var(--secondary)] text-black"
