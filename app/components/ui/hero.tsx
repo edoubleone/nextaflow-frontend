@@ -4,8 +4,10 @@ import Link from "next/link";
 import { AnimatedItem } from "../animatedItem";
 import AvartarGroup from "../avatarGroup";
 import Button from "../button";
+import { useReferral } from "@/app/hooks/useReferral";
 
 export default function Hero() {
+  const bookingUrl = useReferral();
   return (
     <section className="relative overflow-hidden bg-black">
       <div className="mx-auto max-w-7xl lg:px-14 md:px-6 px-4 py-24 text-center">
@@ -30,7 +32,7 @@ export default function Hero() {
         <div className="mt-10 flex flex-col items-center gap-4">
           {/* button */}
           <AnimatedItem index={0} delay={0.15}>
-            <Link href="https://link.nextaflow.net/widget/booking/XchFTkMnL0ZY5QnwUtWN">
+            <Link href={bookingUrl}>
               <Button
                 text="Start My Free 14-Days Trial"
                 className="bg-[var(--secondary)] text-black"

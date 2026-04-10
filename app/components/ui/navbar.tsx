@@ -4,14 +4,15 @@ import Link from "next/link";
 import Button from "../button";
 import Image from "next/image";
 import logo from "@/public/assets/Nextaflow.png";
-import { useSearchParams } from "next/navigation";
+import { useReferral } from "@/app/hooks/useReferral";
 
 interface NavbarProps {
   showCTA?: boolean;
 }
 
 export default function Navbar({ showCTA = true }: NavbarProps) {
-  
+  const bookingUrl = useReferral();
+
 
   return (
     <nav
@@ -38,7 +39,7 @@ export default function Navbar({ showCTA = true }: NavbarProps) {
       {/* CTA Button */}
       {showCTA && (
         <Link
-          href="https://link.nextaflow.net/widget/booking/XchFTkMnL0ZY5QnwUtWN"
+          href={bookingUrl}
           className="hidden md:flex items-center"
         >
           <Button
