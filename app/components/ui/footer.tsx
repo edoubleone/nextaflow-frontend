@@ -1,6 +1,7 @@
 "use client";
 import Button from "../button";
 import Image from "next/image";
+import { useReferral } from "@/app/hooks/useReferral";
 import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 import { AnimatedItem } from "../animatedItem";
@@ -8,6 +9,7 @@ import logo from "@/public/assets/Nextaflow-allblk.png";
 import Link from "next/link";
 
 export default function Footer() {
+  const bookingUrl = useReferral();
   return (
     <footer className="bg-[#f7f7f7] border-[1px] border-white/30 pt-6 text-gray-300 h-full">
       <div className="md:px-6 px-4 pt-16">
@@ -59,7 +61,7 @@ export default function Footer() {
           <div className="flex-col flex md:mt-0 mt-8">
             {/* Signup */}
             <Link
-              href="https://link.nextaflow.net/widget/booking/XchFTkMnL0ZY5QnwUtWN"
+              href={bookingUrl}
               className="text-center md:text-right"
             >
               <Button text="Book for Free" className="bg-black text-white" />
