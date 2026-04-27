@@ -40,7 +40,7 @@ export default function Footer() {
                 <MdLocationOn size={20} />
                 <span className="font-[300] max-w-sm lg:text-[16px] text-[13px]">
                   {" "}
-                  7404 Executive place, Lanham MD 20706, United States
+                  55 Coker Road, Ilupeju, Lagos
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <MdPhone size={20} />
                 <span className="font-[300] lg:text-[16px] text-[13px]">
-                   +1 (202)-933-9591
+                  +1 (202)-933-9591
                 </span>
               </div>
             </div>
@@ -60,10 +60,7 @@ export default function Footer() {
 
           <div className="flex-col flex md:mt-0 mt-8">
             {/* Signup */}
-            <Link
-              href={bookingUrl}
-              className="text-center md:text-right"
-            >
+            <Link href={bookingUrl} className="text-center md:text-right">
               <Button text="Book for Free" className="bg-black text-white" />
             </Link>
             <AnimatedItem index={2} delay={0.15}>
