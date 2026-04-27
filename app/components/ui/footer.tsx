@@ -52,7 +52,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <MdPhone size={20} />
                 <span className="font-[300] lg:text-[16px] text-[13px]">
-                  +1 (202) 971-0392
+                   +1 (202)-933-9591
                 </span>
               </div>
             </div>
