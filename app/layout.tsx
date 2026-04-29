@@ -31,7 +31,7 @@ export default function RootLayout({
       <Script
         src="https://widgets.leadconnectorhq.com/loader.js"
         data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-        data-widget-id="699861eb6e60097dd7229cfd"
+        data-widget-id="69f1e465191334cd704961cc"
       />
 
       <body className={`${inter.variable} antialiased`}>
