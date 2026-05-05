@@ -34,15 +34,24 @@ export default function Footer() {
           </AnimatedItem>
           <AnimatedItem index={1} delay={0.1}>
             {/* Contact Info */}
+            {/* Contact Info */}
             <div className="space-y-2 text-[#1a1a1a] pt-8 md:pt-0">
-              <h2>Address</h2>
+              <h2>Head Office:</h2>
+              <div className="flex items-center gap-2">
+                <MdLocationOn size={20} />
+                <span className="font-[300] max-w-sm lg:text-[16px] text[13px]">
+                  7404 Executive Place, Lanham MD 20706
+                </span>
+              </div>
+
+              <h2 className="pt-2">Branch Office:</h2>
               <div className="flex items-center gap-2">
                 <MdLocationOn size={20} />
                 <span className="font-[300] max-w-sm lg:text-[16px] text-[13px]">
-                  {" "}
                   55 Coker Road, Ilupeju, Lagos
                 </span>
               </div>
+
               <div className="flex items-center gap-2">
                 <MdEmail size={20} />
                 <span className="font-[300] lg:text-[16px] text-[13px]">
