@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import QueryProvider from "./queryProvider";
 // @ts-ignore
@@ -9,10 +9,11 @@ import "./globals.css";
 import Preloader from "./components/preloader";
 import Script from "next/script";
 
-const inter = Inter({
-  variable: "--inter ",
+
+const jakarta = Plus_Jakarta_Sans({
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
   subsets: ["latin"],
-  weight: ["200", "300", "500", "600", "700", "800", "900"],
+  variable: "--font-jakarta",
 });
 
 export const metadata: Metadata = {
@@ -34,7 +35,7 @@ export default function RootLayout({
         data-widget-id="69f1e465191334cd704961cc"
       />
 
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${jakarta.variable} antialiased`}>
         <Preloader duration={2000}>
           <QueryProvider>
             {children}
