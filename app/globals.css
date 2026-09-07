@@ -10,7 +10,8 @@
 }
 
 body {
-  background: #000000;
+  color: #000000;
+  background-color: #ffffff;
   scroll-behavior: smooth;
   font-family: var(--inter );
 }

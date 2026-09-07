@@ -12,7 +12,7 @@ export default function Footer() {
   const bookingUrl = useReferral();
 
   return (
-    <footer className="text-gray-400 py-24 border border-gray-800/80 px-4 md:px-10 lg:px-16 border-t border-gray-800/60 font-sans">
+    <footer className="text-gray-400 py-24 bg-black border border-gray-700/90 px-4 md:px-10 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Top Grid Section */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 pb-12">

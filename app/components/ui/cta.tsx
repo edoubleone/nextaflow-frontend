@@ -9,26 +9,27 @@ export default function CTA() {
 const bookingUrl = useReferral();
 
 return (
-  <section className="relative overflow-hidden bg-black py-10 md:py-16">
+  <section className="relative py-24 border border-gray-700/90 overflow-hidden bg-black py-10 md:py-16">
     <div className="mx-auto w-full max-w-7xl px-5 md:px-6">
       <div
         className="
-          relative
-          overflow-hidden
-          rounded-[18px]
-          bg-black
-          px-6
-          py-12
-          text-center
-          text-white
-          md:rounded-[20px]
-          md:px-10
-          md:py-16
-        "
+        relative
+        overflow-hidden
+        rounded-[18px]
+        bg-black
+        px-6
+        py-12
+        text-center
+        text-white
+        md:rounded-[20px]
+        md:px-10
+        md:py-16
+      "
       >
         {/* =========================
-            VISIBLE BACKGROUND SHAPES
-        ========================== */}
+  VISIBLE BACKGROUND SHAPES
+========================== */}
+
         {/* Top-left large circle */}
         <div
           className="
@@ -38,8 +39,8 @@ return (
   h-64
   w-64
   rounded-full
-  bg-[#272b35]
-  opacity-40
+  bg-[#3f4652]
+  opacity-55
 "
         />
 
@@ -52,8 +53,8 @@ return (
   h-40
   w-40
   rounded-full
-  bg-[#343a46]
-  opacity-30
+  bg-[#515866]
+  opacity-45
 "
         />
 
@@ -66,8 +67,8 @@ return (
   h-56
   w-[420px]
   rounded-b-full
-  bg-[#242934]
-  opacity-40
+  bg-[#3b424e]
+  opacity-60
 "
         />
 
@@ -80,12 +81,12 @@ return (
   h-56
   w-56
   rounded-bl-[100px]
-  bg-[#303641]
-  opacity-35
+  bg-[#464d59]
+  opacity-55
 "
         />
 
-        {/* Right middle curve */}
+        {/* Right middle circle */}
         <div
           className="
   absolute
@@ -94,8 +95,8 @@ return (
   h-48
   w-48
   rounded-full
-  bg-[#252a34]
-  opacity-30
+  bg-[#3a414c]
+  opacity-50
 "
         />
 
@@ -108,8 +109,8 @@ return (
   h-40
   w-52
   rounded-r-[70px]
-  bg-[#2d333e]
-  opacity-35
+  bg-[#464d59]
+  opacity-55
 "
         />
 
@@ -122,8 +123,8 @@ return (
   h-52
   w-64
   rounded-tr-[100px]
-  bg-[#252a34]
-  opacity-35
+  bg-[#3b424e]
+  opacity-55
 "
         />
 
@@ -136,8 +137,8 @@ return (
   h-64
   w-[440px]
   rounded-t-full
-  bg-[#303641]
-  opacity-35
+  bg-[#464d59]
+  opacity-55
 "
         />
 
@@ -150,14 +151,14 @@ return (
   h-60
   w-60
   rounded-full
-  bg-[#292f39]
-  opacity-40
+  bg-[#3f4652]
+  opacity-60
 "
         />
 
         {/* =========================
-            CONTENT
-        ========================== */}
+          CONTENT
+      ========================== */}
 
         <div className="relative z-10 mx-auto max-w-4xl">
           {/* Icon */}
@@ -165,15 +166,15 @@ return (
             <div className="mb-5 flex justify-center">
               <div
                 className="
-                  flex
-                  h-11
-                  w-11
-                  items-center
-                  justify-center
-                  rounded-md
-                  bg-[#d4ff12]
-                  shadow-[0_0_25px_rgba(212,255,18,0.15)]
-                "
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-md
+                bg-[#d4ff12]
+                shadow-[0_0_25px_rgba(212,255,18,0.15)]
+              "
               >
                 <span className="text-xl font-bold text-black">+</span>
               </div>
@@ -184,15 +185,15 @@ return (
           <AnimatedItem index={1} delay={0.1}>
             <h2
               className="
-                mx-auto
-                max-w-4xl
-                text-2xl
-                font-medium
-                leading-tight
-                tracking-tight
-                md:text-4xl
-                lg:text-[42px]
-              "
+              mx-auto
+              max-w-4xl
+              text-2xl
+              font-medium
+              leading-tight
+              tracking-tight
+              md:text-4xl
+              lg:text-[42px]
+            "
             >
               Ready to trade busywork for growth?
             </h2>
@@ -202,15 +203,15 @@ return (
           <AnimatedItem index={2} delay={0.15}>
             <p
               className="
-                mx-auto
-                mt-5
-                max-w-2xl
-                text-sm
-                font-light
-                leading-6
-                text-white/75
-                md:text-base
-              "
+              mx-auto
+              mt-5
+              max-w-2xl
+              text-sm
+              font-light
+              leading-6
+              text-white/75
+              md:text-base
+            "
             >
               Stop juggling tools that don’t talk to each other. Let NextaFlow
               build your CRM, automation, and campaigns for you so you can
@@ -225,19 +226,19 @@ return (
                 <Button
                   text="Book a demo for free trial"
                   className="
-                    rounded-full
-                    bg-[#d4ff12]
-                    px-6
-                    py-3
-                    text-sm
-                    font-medium
-                    text-black
-                    shadow-[0_0_25px_rgba(212,255,18,0.12)]
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                    hover:bg-[#d4ff12]
-                  "
+                  rounded-full
+                  bg-[#d4ff12]
+                  px-6
+                  py-3
+                  text-sm
+                  font-medium
+                  text-black
+                  shadow-[0_0_25px_rgba(212,255,18,0.12)]
+                  transition-all
+                  duration-300
+                  hover:scale-105
+                  hover:bg-[#d4ff12]
+                "
                 />
               </Link>
             </div>
@@ -247,32 +248,32 @@ return (
           <AnimatedItem index={4} delay={0.25}>
             <div
               className="
-                mt-5
-                flex
-                flex-wrap
-                items-center
-                justify-center
-                gap-x-5
-                gap-y-2
-                text-[10px]
-                font-light
-                text-white/60
-                md:text-xs
-              "
+              mt-5
+              flex
+              flex-wrap
+              items-center
+              justify-center
+              gap-x-5
+              gap-y-2
+              text-[10px]
+              font-light
+              text-white/60
+              md:text-xs
+            "
             >
               <span className="flex items-center gap-1.5">
                 <span
                   className="
-                    flex
-                    h-3.5
-                    w-3.5
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-white/50
-                    text-[8px]
-                  "
+                  flex
+                  h-3.5
+                  w-3.5
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/50
+                  text-[8px]
+                "
                 >
                   ✓
                 </span>
@@ -282,16 +283,16 @@ return (
               <span className="flex items-center gap-1.5">
                 <span
                   className="
-                    flex
-                    h-3.5
-                    w-3.5
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-white/50
-                    text-[8px]
-                  "
+                  flex
+                  h-3.5
+                  w-3.5
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-white/50
+                  text-[8px]
+                "
                 >
                   ✓
                 </span>

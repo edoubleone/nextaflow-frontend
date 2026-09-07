@@ -26,7 +26,7 @@ const features: Feature[] = [
 
 export default function ProblemSection() {
   return (
-    <section className="py-24">
+    <section className="py-24 bg-black">
       <div className="max-w-7xl mx-auto md:px-10 px-4 lg:px-16">
         {/* Section Header */}
         <div className="text-center mb-10">

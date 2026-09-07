@@ -51,7 +51,7 @@ const testimonials: Testimonial[] = [
 
 export default function Testimonial() {
   return (
-    <section className="py-24 bg-black text-white border-t border-gray-800/80 relative overflow-hidden">
+    <section className="py-24 bg-black text-white border-t border-gray-700/90 relative overflow-hidden">
       <div className="max-w-7xl mx-auto md:px-10 lg:px-16 px-4">
         {/* Header */}
         <div className="text-center mb-16">
