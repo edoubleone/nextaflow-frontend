@@ -1,158 +1,165 @@
 "use client";
-import Button from "../button";
+
 import Image from "next/image";
-import { useReferral } from "@/app/hooks/useReferral";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
-import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
-import { AnimatedItem } from "../animatedItem";
-import logo from "@/public/assets/Nextaflow-allblk.png";
 import Link from "next/link";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { MdEmail, MdPhone, MdLocationOn } from "react-icons/md";
+import { AnimatedItem } from "../animatedItem";
+import { useReferral } from "@/app/hooks/useReferral";
+import logo from "@/public/assets/Nextaflow-allblk.png";
 
 export default function Footer() {
   const bookingUrl = useReferral();
+
   return (
-    <footer className="bg-[#f7f7f7] border-[1px] border-white/30 pt-6 text-gray-300 h-full">
-      <div className="md:px-6 px-4 pt-16">
-        {/* Top Section */}
-        <div className="grid md:grid-cols-3 grid-cols-1 md:gap-12">
-          <AnimatedItem index={0} delay={0.05}>
-            {/* logo */}
-            <div className="max-w-xl">
+    <footer className="text-gray-400 py-24 border border-gray-800/80 px-4 md:px-10 lg:px-16 border-t border-gray-800/60 font-sans">
+      <div className="max-w-7xl mx-auto">
+        {/* Top Grid Section */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 pb-12">
+          {/* Brand & Socials Column */}
+          <div className="md:col-span-6 lg:col-span-5 space-y-6">
+            <AnimatedItem index={0} delay={0.05}>
               <Image
                 src={logo}
                 alt="Nextaflow Logo"
-                className="md:h-8 h-5 w-auto"
+                className="h-8 w-auto brightness-0 invert"
                 width={200}
                 height={200}
               />
-              <p className="mt-4 max-w-sm lg:text-[16px] text-[13px] font-[300] text-[#1a1a1a]">
+            </AnimatedItem>
+
+            <AnimatedItem index={0} delay={0.1}>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-sm font-normal">
                 NextaFlow is an all-in-one CRM and automation platform designed
                 to help businesses grow without juggling multiple tools. We
                 don’t just give you the software — we set it up for you.
               </p>
-            </div>
-          </AnimatedItem>
-          <AnimatedItem index={1} delay={0.1}>
-            {/* Contact Info */}
-            {/* Contact Info */}
-            <div className="space-y-2 text-[#1a1a1a] pt-8 md:pt-0">
-              <h2>Head Office:</h2>
-              <div className="flex items-center gap-2">
-                <MdLocationOn size={20} />
-                <span className="font-[300] max-w-sm lg:text-[16px] text[13px]">
-                  7404 Executive Place, Lanham MD 20706
-                </span>
-              </div>
+            </AnimatedItem>
 
-              <h2 className="pt-2">Branch Office:</h2>
-              <div className="flex items-center gap-2">
-                <MdLocationOn size={20} />
-                <span className="font-[300] max-w-sm lg:text-[16px] text-[13px]">
-                  55 Coker Road, Ilupeju, Lagos
-                </span>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <MdEmail size={20} />
-                <span className="font-[300] lg:text-[16px] text-[13px]">
-                  info@edoubleone.net
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MdPhone size={20} />
-                <span className="font-[300] lg:text-[16px] text-[13px]">
-                  +1 (202)-933-9591
-                </span>
-              </div>
-            </div>
-          </AnimatedItem>
-
-          <div className="flex-col flex md:mt-0 mt-8">
-            {/* Signup */}
-            <Link href={bookingUrl} className="text-center md:text-right">
-              <Button text="Book for Free" className="bg-black text-white" />
-            </Link>
-            <AnimatedItem index={2} delay={0.15}>
-              {/* Social Icons */}
-              <div className="flex gap-2 items-center mt-4">
-                <h2 className="text-black lg:text-[16px] text-[13px] font-[300]">
-                  Follow Us :
-                </h2>
-                <div className="flex justify-center gap-4">
-                  {/* Twitter */}
-                  {/* <a
-                    href="https://x.com/edoubleoneinc?t=lrNy6KIiT9EGCUUO2fVenw&s=09"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"
-                  >
-                    <FaTwitter size={20} />
-                  </a> */}
-
-                  {/* Instagram */}
-                  <a
-                    href="https://www.instagram.com/edoubleone_nextaflow?igsh=MXRlZGoyMHp1ZW0yMQ%3D%3D&utm_source=qr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"
-                  >
-                    <FaInstagram size={20} />
-                  </a>
-
-                  {/* LinkedIn */}
-                  <a
-                    href="https://www.linkedin.com/company/e-double-one-inc/posts/?feedView=all"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white h-8 w-8 flex items-center justify-center rounded-full border border-transparent transition-all duration-300 hover:bg-black hover:text-white hover:scale-110 cursor-pointer"
-                  >
-                    <FaLinkedin size={20} />
-                  </a>
-                </div>
+            {/* Social Icons Inline */}
+            <AnimatedItem index={0} delay={0.15}>
+              <div className="flex items-center gap-4 text-gray-300 pt-2">
+                <a
+                  href="https://www.instagram.com/edoubleone_nextaflow?igsh=MXRlZGoyMHp1ZW0yMQ%3D%3D&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors duration-200"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram size={18} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/e-double-one-inc/posts/?feedView=all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors duration-200"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin size={18} />
+                </a>
               </div>
             </AnimatedItem>
           </div>
-        </div>
-        <AnimatedItem index={4} delay={0.25}>
-          {/* Divider */}
-          <div className="border-t border-white/10 pt-24 text-center text-[13px] text-[#1a1a1a] font-[200]">
-            © 2026 NextaFlow. All rights reserved.
+
+          {/* Contact Details Column */}
+          <div className="md:col-span-3 lg:col-span-3 space-y-3">
+            <AnimatedItem index={1} delay={0.1}>
+              <h3 className="text-white text-sm font-semibold tracking-wide mb-4">
+                Contact
+              </h3>
+              <ul className="space-y-3 text-sm text-gray-400 font-normal">
+                <li className="flex items-center gap-2.5">
+                  <MdLocationOn size={18} className="shrink-0 text-gray-400" />
+                  <span>55 Coker Road, Ilupeju, Lagos</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <MdEmail size={18} className="shrink-0 text-gray-400" />
+                  <a
+                    href="mailto:info@edoubleone.net"
+                    className="hover:text-white transition-colors"
+                  >
+                    info@edoubleone.net
+                  </a>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <MdPhone size={18} className="shrink-0 text-gray-400" />
+                  <a
+                    href="tel:+12029339591"
+                    className="hover:text-white transition-colors"
+                  >
+                    +1 (202)-933-9591
+                  </a>
+                </li>
+              </ul>
+            </AnimatedItem>
           </div>
-        </AnimatedItem>
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          {/* Powered by */}
-          <AnimatedItem index={5} delay={0.35}>
-            <p className="text-sm font-[300] text-[#1a1a1a]">
-              Powered by&nbsp;
+
+          {/* Legal & Actions Column */}
+          <div className="md:col-span-3 lg:col-span-4 space-y-3">
+            <AnimatedItem index={2} delay={0.15}>
+              <h3 className="text-white text-sm font-semibold tracking-wide mb-4">
+                Legal
+              </h3>
+              <ul className="space-y-2.5 text-sm font-normal">
+                <li>
+                  <Link
+                    href="/privacy-policy"
+                    className="hover:text-white transition-colors"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/terms-of-service"
+                    className="hover:text-white transition-colors"
+                  >
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/security-policy"
+                    className="hover:text-white transition-colors"
+                  >
+                    Security Policy
+                  </Link>
+                </li>
+                <li className="pt-2">
+                  <Link
+                    href={bookingUrl}
+                    className="inline-block text-[#d4ff12] hover:underline font-medium"
+                  >
+                    Book for Free →
+                  </Link>
+                </li>
+              </ul>
+            </AnimatedItem>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-gray-800/80 pt-8" />
+
+        {/* Bottom Bar Section */}
+        <AnimatedItem index={3} delay={0.2}>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 font-normal">
+            <div>© 2026 NEXTAFLOW. All rights reserved.</div>
+
+            <div className="flex items-center gap-1.5">
+              <MdEmail size={14} className="text-gray-400" />
+              <span>Powered by </span>
               <a
                 href="http://edoubleone.net/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-gray-300 hover:text-white transition-colors font-medium"
               >
-                <span className="text-[var(--primary)] font-[500]">
-                  Edoubleone.net
-                </span>
-              </a>
-            </p>
-          </AnimatedItem>
-
-          {/* Links */}
-          <AnimatedItem index={6} delay={0.45}>
-            <div className="flex items-center font-[300] space-x-3 text-sm text-[#1a1a1a]">
-              <a href="/privacy-policy" className="underline text-[13px]">
-                Privacy Policy
-              </a>
-              <span className="text-[#1a1a1a]">|</span>
-              <a href="/terms-of-service" className="underline text-[13px]">
-                Terms of Service
-              </a>
-              <span className="text-[#1a1a1a]">|</span>
-              <a href="/security-policy" className="underline text-[13px]">
-                Security Policy
+                Edoubleone.net
               </a>
             </div>
-          </AnimatedItem>
-        </div>
+          </div>
+        </AnimatedItem>
       </div>
     </footer>
   );

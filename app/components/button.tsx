@@ -28,7 +28,7 @@ export default function Button({
         group
         rounded-[10px]
         px-4 py-3
-        text-base font-[300]
+        text-base font-[500]
         flex items-center justify-center gap-4
         transition-all duration-300 ease-out
 

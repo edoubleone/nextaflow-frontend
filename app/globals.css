@@ -10,6 +10,7 @@
 }
 
 body {
+  background: #000000;
   scroll-behavior: smooth;
   font-family: var(--inter );
 }
