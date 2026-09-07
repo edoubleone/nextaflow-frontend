@@ -42,7 +42,7 @@ export default function FAQ() {
   }, [openIndex]);
 
   return (
-    <section className="py-24 border-t border-gray-800/80 text-white relative overflow-hidden border-t border-gray-800/80">
+    <section className="py-24 border-t border-gray-700/90 bg-black text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto md:px-10 lg:px-16 px-4 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16 flex flex-col items-center">

@@ -48,7 +48,7 @@ const steps: Step[] = [
 
 export default function Setup() {
   return (
-    <section className="py-24 text-white relative overflow-hidden border-t border-gray-800/80">
+    <section className="py-24 bg-black text-white relative overflow-hidden border-t border-gray-700/90">
       {/* Background Ambient Glow */}
       <div
         aria-hidden="true"

@@ -13,7 +13,7 @@ export default function Hero() {
   const bookingUrl = useReferral();
 
   return (
-    <section className="relative overflow-hidden bg-black border-b border-gray-800/80 text-white min-h-screen flex flex-col justify-between py-20 px-4 lg:px-16 md:px-10">
+    <section className="relative overflow-hidden bg-black border-b border-gray-700/90 text-white min-h-screen flex flex-col justify-between py-20 px-4 lg:px-16 md:px-10">
       {/* Full Hero Background Gradient Overlay*/}
       <div
         aria-hidden="true"

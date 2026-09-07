@@ -61,7 +61,7 @@ const features: Feature[] = [
 
 export default function Features() {
   return (
-    <section className="py-24 text-white border-t border-gray-800/80 relative overflow-hidden">
+    <section className="py-24 bg-black text-white border-t border-gray-700/90 relative overflow-hidden">
       {/* Background Glow Overlay */}
       <div
         aria-hidden="true"
